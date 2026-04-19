@@ -141,9 +141,9 @@
 
     /* ── Steps ── */
     .steps-title {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       color: var(--muted);
       font-weight: 600;
     }
@@ -151,39 +151,44 @@
     .steps {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0;
     }
 
     .step {
       display: flex;
       align-items: flex-start;
-      gap: 1rem;
-      background: var(--surface2);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 0.85rem 1rem;
+      gap: 1.4rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .step:last-child { border-bottom: none; }
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .step { opacity: 1; transform: none; transition: none; }
     }
 
     .step-num {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), #1e40af);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      color: #fff;
-      box-shadow: 0 0 12px rgba(37,99,235,0.4);
+      color: rgba(59,130,246,0.25);
+      line-height: 1;
+      min-width: 2rem;
+      text-align: center;
+      padding-top: 0.15rem;
     }
 
     .step-text {
-      font-size: 0.95rem;
-      line-height: 1.6;
+      font-size: 1rem;
+      line-height: 1.65;
       color: #c8d5f0;
-      padding-top: 0.1rem;
     }
 
     .step-text code {
@@ -354,5 +359,18 @@
   <div class="footer">by אִימפּרוּב · שלהבת ורדי</div>
 
 </div>
+<script>
+  const steps = document.querySelectorAll('.step');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = [...steps].indexOf(entry.target);
+        setTimeout(() => entry.target.classList.add('visible'), idx * 160);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  steps.forEach(step => observer.observe(step));
+</script>
 </body>
 </html>
