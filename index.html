@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>humanizer-he — סקיל חדש מאימפרוב</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --green: #4ade80;
+      --bg: #07090f;
+      --surface: #0f1420;
+      --surface2: #161c2e;
+      --border: rgba(59,130,246,0.15);
+      --text: #e8edf8;
+      --muted: #8492ad;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Heebo', Arial, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* subtle grid bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* glow behind hero */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 18px rgba(37,99,235,0.5));
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(37,99,235,0.15);
+      border: 1px solid rgba(37,99,235,0.3);
+      border-radius: 100px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.75rem;
+      color: var(--blue-light);
+      letter-spacing: 0.03em;
+      font-weight: 500;
+    }
+    .badge span { font-size: 0.9rem; }
+
+    .title {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 30%, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ── Card ── */
+    .card {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .card-intro {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .card-intro strong {
+      color: #93c5fd;
+      font-weight: 600;
+    }
+
+    /* ── Steps ── */
+    .steps-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--surface2);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #1e40af);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(37,99,235,0.4);
+    }
+
+    .step-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #c8d5f0;
+      padding-top: 0.1rem;
+    }
+
+    .step-text code {
+      background: rgba(37,99,235,0.18);
+      border: 1px solid rgba(37,99,235,0.25);
+      border-radius: 5px;
+      padding: 0.1rem 0.4rem;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: #93c5fd;
+    }
+
+    /* ── Notes ── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 -2rem;
+    }
+
+    .notes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .note {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .note-dot {
+      color: var(--blue-light);
+      margin-top: 0.1rem;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Download button ── */
+    .download-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      width: 100%;
+      max-width: 420px;
+      padding: 1.1rem 2rem;
+      background: linear-gradient(135deg, var(--blue) 0%, #1e40af 100%);
+      color: #fff;
+      font-family: 'Heebo', Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 30px rgba(37,99,235,0.45), 0 1px 0 rgba(255,255,255,0.1) inset;
+      transition: transform 0.15s, box-shadow 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-download::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(37,99,235,0.55), 0 1px 0 rgba(255,255,255,0.1) inset;
+    }
+
+    .btn-download:active {
+      transform: translateY(0);
+    }
+
+    .btn-icon { font-size: 1.3rem; }
+
+    .download-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.6;
+    }
+
+    @media (max-width: 480px) {
+      .page { padding: 2rem 1rem 4rem; gap: 2rem; }
+      .card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <img class="logo" src="MASCOT-AIMRPOVE.png" alt="Aimprove" />
+    <div class="badge"><span>✨</span> סקיל חדש זמין</div>
+    <h1 class="title">humanizer-he</h1>
+    <p class="subtitle">קיבלת גישה לסקיל חדש מאימפרוב 👋</p>
+  </div>
+
+  <div class="card">
+
+    <p class="card-intro">
+      <strong>מה זה:</strong> סקיל ל-Claude שמזהה טקסטים שנשמעים כמו AI בעברית — ומתקן אותם שיישמעו אנושיים 🎯
+    </p>
+
+    <div>
+      <p class="steps-title">איך משתמשים</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">נכנסים לשיחה חדשה ב-Claude ומוודאים שהסקיל פעיל</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">מדביקים: <code>תעבור על הטקסט הבא עם humanizer-he</code> + הטקסט</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">עונים לשאלות שלו — הוא ישאל איזה סוג טקסט זה (מייל, פוסט, וואטסאפ, כתבה) ולפעמים ישאל מה לעשות עם ביטויים גבוליים</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">מקבלים טקסט מתוקן + הסבר מה שונה ומה נשאר 🙌</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="notes">
+      <div class="note"><span class="note-dot">🔹</span><span>הוא ישאל שאלות באמצע — זה פיצ׳ר, לא באג. הוא לא מתקן הכל בצורה עיוורת</span></div>
+      <div class="note"><span class="note-dot">🔹</span><span>אפשר לנסות להשתמש בו גם כדי לכתוב טקסט מאפס ולא רק לשכתב</span></div>
+      <div class="note"><span class="note-dot">🔹</span><span>הוא לא משנה טקסט אנושי — רק מזהה דפוסים של AI</span></div>
+      <div class="note"><span class="note-dot">🔹</span><span>אם ההחלטה שלו לא מוצאת חן, אפשר לתקן אותו — הוא גמיש</span></div>
+    </div>
+
+  </div>
+
+  <div class="download-wrap">
+    <a class="btn-download" href="humanizer-he-v1.1.zip" download>
+      <span class="btn-icon">⬇️</span>
+      הורדת הסקיל — humanizer-he v1.1
+    </a>
+    <span class="download-meta">קובץ ZIP · 22KB</span>
+  </div>
+
+  <div class="footer">by Aimprove · שלהבת ורדי</div>
+
+</div>
+</body>
+</html>
