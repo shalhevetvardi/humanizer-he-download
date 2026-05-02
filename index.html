@@ -290,7 +290,8 @@
        ══════════════════════════════════════ */
     .install-toggle {
       width: 100%;
-      max-width: 420px;
+      max-width: 540px;
+      margin: 0 auto;
     }
 
     .install-trigger {
@@ -299,22 +300,22 @@
       justify-content: center;
       gap: 0.5rem;
       width: 100%;
-      padding: 0.65rem 1.2rem;
-      background: transparent;
-      border: 1px solid rgba(37,99,235,0.2);
-      border-radius: 10px;
-      color: var(--muted);
+      padding: 0.85rem 1.5rem;
+      background: rgba(37,99,235,0.12);
+      border: 1.5px solid rgba(37,99,235,0.35);
+      border-radius: 12px;
+      color: #93c5fd;
       font-family: 'Heebo', Arial, sans-serif;
-      font-size: 0.82rem;
-      font-weight: 500;
+      font-size: 0.92rem;
+      font-weight: 600;
       cursor: pointer;
       transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
 
     .install-trigger:hover {
       color: var(--text);
-      border-color: rgba(37,99,235,0.35);
-      background: rgba(37,99,235,0.06);
+      border-color: rgba(37,99,235,0.5);
+      background: rgba(37,99,235,0.15);
     }
 
     .install-trigger svg {
@@ -428,6 +429,54 @@
       <strong>מה זה:</strong> סקיל ל-Claude שמתמחה בזיהוי וסילוק טביעות האצבע של AI מטקסטים בעברית — הסממנים הספציפיים שמוכרים ומסגירים כתיבה של מודל
     </p>
 
+  </div>
+
+  <!-- ════════ DOWNLOAD + INSTALL ════════ -->
+  <div class="download-wrap">
+    <a class="btn-download" href="humanizer-he-v1.1.zip" download>
+      להורדת הסקיל
+    </a>
+    <span class="download-meta">💻 מומלץ לפתוח מהמחשב</span>
+  </div>
+
+  <div class="install-toggle" id="installToggle">
+    <button class="install-trigger" onclick="document.getElementById('installToggle').classList.toggle('open')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      הורדתם? ככה מעלים את הסקיל לקלוד ↓
+    </button>
+    <div class="install-panel">
+      <div class="install-card">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <span>נכנסים ל-<span class="hl">claude.ai</span> ומוודאים שאתם מחוברים</span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <span>הולכים ל-<span class="hl">Customize</span> בתפריט הצד ← לוחצים על <span class="hl">Skills</span></span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <span>לוחצים על כפתור ה-<span class="hl">+</span> ← בוחרים <span class="hl">+ Create skill</span></span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">4</div>
+          <span>בוחרים <span class="hl">Upload a skill</span> ← בוחרים את קובץ ה-ZIP שהורדתם</span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">5</div>
+          <span>הסקיל יופיע ברשימה — מוודאים שהמתג שלו <span class="hl">דלוק</span> ✓</span>
+        </div>
+        <div class="install-prereq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>דרישה: צריך שתהיה מופעלת האפשרות <strong style="color:#c8d5f0">Code execution</strong> ב-Settings&nbsp;›&nbsp;Capabilities. בלי זה Skills לא יעבדו.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CARD 2: How to use ════════ -->
+  <div class="card">
+
     <div>
       <p class="steps-title">איך משתמשים</p>
     </div>
@@ -460,48 +509,6 @@
       <div class="note"><span class="note-dot">🔹</span><span>אם ההחלטה שלו לא מוצאת חן, אפשר לתקן אותו — הוא גמיש</span></div>
     </div>
 
-  </div>
-
-  <div class="download-wrap">
-    <a class="btn-download" href="humanizer-he-v1.1.zip" download>
-      להורדת הסקיל
-    </a>
-    <span class="download-meta">💻 מומלץ לפתוח מהמחשב</span>
-
-    <div class="install-toggle" id="installToggle">
-      <button class="install-trigger" onclick="document.getElementById('installToggle').classList.toggle('open')">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-        איך מעלים את הסקיל לקלוד?
-      </button>
-      <div class="install-panel">
-        <div class="install-card">
-          <div class="install-step">
-            <div class="install-step-num">1</div>
-            <span>נכנסים ל-<span class="hl">claude.ai</span> ומוודאים שאתם מחוברים</span>
-          </div>
-          <div class="install-step">
-            <div class="install-step-num">2</div>
-            <span>הולכים ל-<span class="hl">Customize</span> בתפריט הצד ← לוחצים על <span class="hl">Skills</span></span>
-          </div>
-          <div class="install-step">
-            <div class="install-step-num">3</div>
-            <span>לוחצים על כפתור ה-<span class="hl">+</span> ← בוחרים <span class="hl">+ Create skill</span></span>
-          </div>
-          <div class="install-step">
-            <div class="install-step-num">4</div>
-            <span>בוחרים <span class="hl">Upload a skill</span> ← בוחרים את קובץ ה-ZIP שהורדתם</span>
-          </div>
-          <div class="install-step">
-            <div class="install-step-num">5</div>
-            <span>הסקיל יופיע ברשימה — מוודאים שהמתג שלו <span class="hl">דלוק</span> ✓</span>
-          </div>
-          <div class="install-prereq">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <span>דרישה: צריך שתהיה מופעלת האפשרות <strong style="color:#c8d5f0">Code execution</strong> ב-Settings&nbsp;›&nbsp;Capabilities. בלי זה Skills לא יעבדו.</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="footer">by אִימפּרוּב · שלהבת ורדי</div>
