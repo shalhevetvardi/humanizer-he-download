@@ -473,41 +473,35 @@
     </div>
   </div>
 
-  <!-- ════════ CARD 2: How to use ════════ -->
-  <div class="card">
-
-    <div>
-      <p class="steps-title">איך משתמשים</p>
+  <!-- ════════ HOW TO USE (toggle) ════════ -->
+  <div class="install-toggle" id="usageToggle">
+    <button class="install-trigger" onclick="document.getElementById('usageToggle').classList.toggle('open')">
+      לחצו כאן לגלות איך משתמשים בסקיל
+    </button>
+    <div class="install-panel">
+      <div class="install-card">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <span>נכנסים לשיחה חדשה ב-Claude ומוודאים שהסקיל פעיל</span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <span>מדביקים: <code>תעבור על הטקסט הבא עם humanizer-he</code> + הטקסט</span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <span>עונים לשאלות שלו — הוא ישאל איזה סוג טקסט זה (מייל, פוסט, וואטסאפ, כתבה) ולפעמים ישאל מה לעשות עם ביטויים גבוליים</span>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">4</div>
+          <span>מקבלים טקסט מתוקן + הסבר מה שונה ומה נשאר</span>
+        </div>
+        <div class="install-prereq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <span>הוא ישאל שאלות באמצע — זה פיצ׳ר, לא באג. הוא לא מתקן הכל בצורה עיוורת. אם ההחלטה שלו לא מוצאת חן, אפשר לתקן אותו — הוא גמיש.</span>
+        </div>
+      </div>
     </div>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-text">נכנסים לשיחה חדשה ב-Claude ומוודאים שהסקיל פעיל</div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-text">מדביקים: <code>תעבור על הטקסט הבא עם humanizer-he</code> + הטקסט</div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-text">עונים לשאלות שלו — הוא ישאל איזה סוג טקסט זה (מייל, פוסט, וואטסאפ, כתבה) ולפעמים ישאל מה לעשות עם ביטויים גבוליים</div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-text">מקבלים טקסט מתוקן + הסבר מה שונה ומה נשאר 🙌</div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="notes">
-      <div class="note"><span class="note-dot">🔹</span><span>הוא ישאל שאלות באמצע — זה פיצ׳ר, לא באג. הוא לא מתקן הכל בצורה עיוורת</span></div>
-      <div class="note"><span class="note-dot">🔹</span><span>אפשר לנסות להשתמש בו גם כדי לכתוב טקסט מאפס ולא רק לשכתב</span></div>
-      <div class="note"><span class="note-dot">🔹</span><span>הוא לא משנה טקסט אנושי — רק מזהה דפוסים של AI</span></div>
-      <div class="note"><span class="note-dot">🔹</span><span>אם ההחלטה שלו לא מוצאת חן, אפשר לתקן אותו — הוא גמיש</span></div>
-    </div>
-
   </div>
 
   <div class="footer">by אִימפּרוּב · שלהבת ורדי</div>
